@@ -1,3 +1,4 @@
+
 CREATE DATABASE IF NOT EXISTS collectTech2;
 
 USE collectTech2;
@@ -9,15 +10,15 @@ nome VARCHAR(255) NOT NULL,
 email VARCHAR(255) NOT NULL,
 senha VARCHAR(255) NOT NULL,
 tel CHAR(11) NOT NULL,
-cargo VARCHAR(30) NOT NULL
+cargo VARCHAR(30) NOT NULL constraint  check(cargo in ('Motorista', 'Administrador', 'Analista_de_dados', 'Gestor')) 
 );
 
 CREATE TABLE IF NOT EXISTS lixeiras(
 id_lixeira INT PRIMARY KEY NOT NULL AUTO_INCREMENT,
-lotacao TINYINT (2), -- 0 vazio, 1 lotado
+lotacao TINYINT (2) constraint check (lotacao in (0, 1)), -- 0 vazio, 1 lotado
 logradouro VARCHAR(255) NOT NULL,
 numero VARCHAR(4) NOT NULL,
-cep VARCHAR(8) NOT NULL
+cep VARCHAR(8) NOT NULL 
 );
 
 CREATE TABLE IF NOT EXISTS caminhoes(
@@ -34,7 +35,7 @@ data_instalado DATETIME NOT NULL DEFAULT CURRENT_TIMESTAMP
 );
 
 INSERT INTO usuario (id_usuario, nome, email, senha, tel, cargo) 
-VALUES (1,'Leticia', 'leticia.bastos@sptechschool.com', '12345', '11991476333', 'Analista de dados'), 
+VALUES (1,'Leticia', 'leticia.bastos@sptechschool.com', '12345', '11991476333', 'Analista_de_dados'), 
 (2,'Andre', 'andrezinho@email.com', '1234565', '11991476334', 'Gestor'), 
 (3,'Samuel', 'santos@email.com', '123123', '11991472222', 'Motorista'), 
 (4, 'Luis', 'luis.sptech@email.com', '3821', '11997382867', 'Administrador');
